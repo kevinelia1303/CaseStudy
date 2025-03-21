@@ -8,8 +8,8 @@ export const KevDB = new DataSource({
   url: SUPABASE_URL || "",
   synchronize: false, //khusus development, kalo production false
   logging: true, // log apapun yg terjadi di db
-  entities: [path.join(__dirname, "src/entities/*.{js,ts}")], // models
-  migrations: [path.join(__dirname, "src/migrations/*.{js,ts}")], // penambahan apa pada tabel, satu tabel satu migration
+  entities: [path.join(__dirname, "/entities/*.{js,ts}")], // models
+  migrations: [path.join(__dirname, "/migrations/*.{js,ts}")], // penambahan apa pada tabel, satu tabel satu migration
   // username: "postgres",
   // password: "postgres",
   // host: "localhost",
