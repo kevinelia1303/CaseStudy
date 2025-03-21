@@ -1,0 +1,14 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const user_controller_1 = __importDefault(require("../controllers/user.controller"));
+const multer_1 = require("../utils/multer");
+const router = (0, express_1.Router)();
+//register
+router.post("/register", (0, multer_1.Multer)("memoryStorage").single("file"), user_controller_1.default.Register);
+//login
+router.post("/login", user_controller_1.default.Login);
+exports.default = router;
