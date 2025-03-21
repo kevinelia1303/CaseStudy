@@ -12,8 +12,8 @@ exports.KevDB = new typeorm_1.DataSource({
     url: config_1.SUPABASE_URL || "",
     synchronize: false, //khusus development, kalo production false
     logging: true, // log apapun yg terjadi di db
-    entities: [path_1.default.join(__dirname, "src/entities/*.{js,ts}")], // models
-    migrations: [path_1.default.join(__dirname, "src/migrations/*.{js,ts}")], // penambahan apa pada tabel, satu tabel satu migration
+    entities: [path_1.default.join(__dirname, "/entities/*.{js,ts}")], // models
+    migrations: [path_1.default.join(__dirname, "/migrations/*.{js,ts}")], // penambahan apa pada tabel, satu tabel satu migration
     // username: "postgres",
     // password: "postgres",
     // host: "localhost",
