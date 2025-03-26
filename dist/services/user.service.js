@@ -80,6 +80,20 @@ const UserService = {
                 .into(user_entity_1.User)
                 .values({ email, password: hashPassword, name, avatar })
                 .execute();
+            // const templatePath = path.join(
+            //   __dirname,
+            //   "../templates",
+            //   "registration-template.hbs"
+            // )
+            // const templateSource = fs.readFileSync(templatePath, "utf-8")
+            // const compiledTemplate = handlebars.compile(templateSource)
+            // const html = compiledTemplate({name}) // untuk masukin nama ke template
+            // await transporter.sendMail({
+            //   from: "Sender Address",
+            //   to: email,
+            //   subject: "Register",
+            //   html: "<h1>Thank you</h1>",
+            // })
         }
         catch (error) {
             yield (0, cloudinary_1.cloudinaryRemove)(avatar);

@@ -17,12 +17,12 @@ const PORT = config_1.PORT || 8080;
 const app = (0, express_1.default)();
 //middleware global
 app.use((0, helmet_1.default)());
-app.use((0, cors_1.default)()); //open to public
-// app.use(cors({
-//   origin: "domain.com",
-//   methods:  "GET,PUT,POST",
-//   allowedHeaders: "Origin, Authorization"
-// }))
+// app.use(cors()) //open to public
+app.use((0, cors_1.default)({
+    origin: "https://waps-reborn.flutterflow.app, https://procurement-app-rkp1ve.flutterflow.app",
+    methods: "GET,PUT,POST",
+    allowedHeaders: "Origin, Authorization",
+}));
 app.use(express_1.default.json()); // untuk parsing json
 app.use("/auth", user_router_1.default);
 app.use("/procurement-order", procurementorder_router_1.default);
