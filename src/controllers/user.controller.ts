@@ -25,6 +25,7 @@ export default {
         .send({
           message: "OK",
           data: {
+            refresh_token: data.access_token,
             session_token: data.session_token,
             user: data.user,
           },
