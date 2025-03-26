@@ -14,4 +14,7 @@ router.post(
 //login
 router.post("/login", userController.Login)
 
+//refresh token
+router.get("/refresh", userController.RefreshToken)
+
 export default router
