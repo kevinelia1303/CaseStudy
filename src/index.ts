@@ -15,15 +15,14 @@ const app: Application = express()
 
 //middleware global
 app.use(helmet())
-// app.use(cors()) //open to public
-app.use(
-  cors({
-    origin:
-      "https://waps-reborn.flutterflow.app, https://procurement-app-rkp1ve.flutterflow.app",
-    methods: "GET,PUT,POST",
-    allowedHeaders: "Origin, Authorization",
-  })
-)
+app.use(cors()) //open to public
+// app.use(
+//   cors({
+//     origin: "procurement-app-rkp1ve.flutterflow.app",
+//     methods: "GET,PUT,POST",
+//     allowedHeaders: "Origin, Authorization",
+//   })
+// )
 app.use(express.json()) // untuk parsing json
 
 app.use("/auth", UserRouter)
