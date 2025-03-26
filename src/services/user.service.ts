@@ -7,6 +7,7 @@ import { sign } from "jsonwebtoken"
 import { SECRET_KEY } from "../config"
 import { PayloadParams } from "../custom"
 import { cloudinaryUpload, cloudinaryRemove } from "../utils/cloudinary"
+import { transporter } from "../utils/nodemailer"
 const UserService = {
   findOneByEmail: async (email: string) => {
     try {
@@ -42,6 +43,23 @@ const UserService = {
         .into(User)
         .values({ email, password: hashPassword, name, avatar })
         .execute()
+
+      // const templatePath = path.join(
+      //   __dirname,
+      //   "../templates",
+      //   "registration-template.hbs"
+      // )
+
+      // const templateSource = fs.readFileSync(templatePath, "utf-8")
+      // const compiledTemplate = handlebars.compile(templateSource)
+      // const html = compiledTemplate({name}) // untuk masukin nama ke template
+
+      // await transporter.sendMail({
+      //   from: "Sender Address",
+      //   to: email,
+      //   subject: "Register",
+      //   html: "<h1>Thank you</h1>",
+      // })
     } catch (error) {
       await cloudinaryRemove(avatar)
       throw error
