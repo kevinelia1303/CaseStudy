@@ -11,7 +11,7 @@ const router = Router()
 router.post("/", validateReq(createItemSchema), ItemController.CreateItem)
 
 //Get All Item
-router.get("/", verifyToken, adminGuard, ItemController.GetAllItem)
+router.get("/", verifyToken, ItemController.GetAllItem)
 
 //Get Item by ID
 router.get("/:id", ItemController.GetItemById)

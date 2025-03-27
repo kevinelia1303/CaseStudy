@@ -13,7 +13,7 @@ const router = (0, express_1.Router)();
 //Create Item
 router.post("/", (0, validator_middleware_1.default)(item_schema_1.createItemSchema), item_controller_1.default.CreateItem);
 //Get All Item
-router.get("/", auth_middleware_1.verifyToken, auth_middleware_1.adminGuard, item_controller_1.default.GetAllItem);
+router.get("/", auth_middleware_1.verifyToken, item_controller_1.default.GetAllItem);
 //Get Item by ID
 router.get("/:id", item_controller_1.default.GetItemById);
 //Update Item
