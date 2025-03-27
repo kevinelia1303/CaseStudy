@@ -4,6 +4,7 @@ import helmet from "helmet"
 import cors from "cors"
 import { KevDB } from "./data-source"
 import corsOptions from "./configCORS/corsOptions"
+import { ErrorMiddleware } from "./middlewares/error.middleware"
 
 // router
 import PurchaseRequestRouter from "./routers/PurchaseRequest.router"
@@ -34,6 +35,8 @@ app.use("/procurement-order", ProcurementOrderRouter)
 app.use("/purchase-request", PurchaseRequestRouter)
 
 app.use("/item", ItemRouter)
+
+app.use(ErrorMiddleware)
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   const error = err as any

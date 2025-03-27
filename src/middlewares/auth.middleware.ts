@@ -3,6 +3,7 @@ import { verify } from "jsonwebtoken"
 import { PayloadParams } from "../custom"
 import { error } from "console"
 import { SECRET_KEY } from "../config"
+import { HttpException } from "./error.middleware"
 export async function verifyToken(
   req: Request,
   res: Response,
@@ -13,13 +14,13 @@ export async function verifyToken(
     console.log(token)
 
     if (!token) {
-      // throw new HttpException (500,"Unauthorized")
+      throw new HttpException(500, "Unauthorized")
     }
     if (token) {
       const verifyUser = verify(token, SECRET_KEY as string)
       if (!verifyUser) {
-        // throw new HttpException(500, "Unauthorized")
-        throw new Error("Unauthorized")
+        throw new HttpException(500, "Unauthorized")
+        // throw new Error("Unauthorized")
       }
       //   console.log(verifyUser)
       req.user = verifyUser as PayloadParams
@@ -40,8 +41,8 @@ export function adminManagerGuard(roles: string[]) {
   ) {
     try {
       if (req.user?.role !== "ADMIN") {
-        //   throw new HttpException(500, "Admin Only")
-        throw new Error("Admin only")
+        throw new HttpException(500, "Admin Only")
+        // throw new Error("Admin only")
       }
       next()
     } catch (error) {
@@ -57,8 +58,8 @@ export async function adminGuard(
 ) {
   try {
     if (req.user?.role !== "ADMIN") {
-      //   throw new HttpException(500, "Admin Only")
-      throw new Error("Admin only")
+      throw new HttpException(500, "Admin Only")
+      // throw new Error("Admin only")
     }
     next()
   } catch (error) {

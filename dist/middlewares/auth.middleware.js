@@ -14,6 +14,7 @@ exports.adminManagerGuard = adminManagerGuard;
 exports.adminGuard = adminGuard;
 const jsonwebtoken_1 = require("jsonwebtoken");
 const config_1 = require("../config");
+const error_middleware_1 = require("./error.middleware");
 function verifyToken(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
@@ -21,13 +22,13 @@ function verifyToken(req, res, next) {
             const token = (_a = req.header("Authorization")) === null || _a === void 0 ? void 0 : _a.replace("Bearer ", "");
             console.log(token);
             if (!token) {
-                // throw new HttpException (500,"Unauthorized")
+                throw new error_middleware_1.HttpException(500, "Unauthorized");
             }
             if (token) {
                 const verifyUser = (0, jsonwebtoken_1.verify)(token, config_1.SECRET_KEY);
                 if (!verifyUser) {
-                    // throw new HttpException(500, "Unauthorized")
-                    throw new Error("Unauthorized");
+                    throw new error_middleware_1.HttpException(500, "Unauthorized");
+                    // throw new Error("Unauthorized")
                 }
                 //   console.log(verifyUser)
                 req.user = verifyUser;
@@ -48,8 +49,8 @@ function adminManagerGuard(roles) {
             var _a;
             try {
                 if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) !== "ADMIN") {
-                    //   throw new HttpException(500, "Admin Only")
-                    throw new Error("Admin only");
+                    throw new error_middleware_1.HttpException(500, "Admin Only");
+                    // throw new Error("Admin only")
                 }
                 next();
             }
@@ -64,8 +65,8 @@ function adminGuard(req, res, next) {
         var _a;
         try {
             if (((_a = req.user) === null || _a === void 0 ? void 0 : _a.role) !== "ADMIN") {
-                //   throw new HttpException(500, "Admin Only")
-                throw new Error("Admin only");
+                throw new error_middleware_1.HttpException(500, "Admin Only");
+                // throw new Error("Admin only")
             }
             next();
         }

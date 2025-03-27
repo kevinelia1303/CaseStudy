@@ -9,6 +9,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const data_source_1 = require("./data-source");
 const corsOptions_1 = __importDefault(require("./configCORS/corsOptions"));
+const error_middleware_1 = require("./middlewares/error.middleware");
 // router
 const PurchaseRequest_router_1 = __importDefault(require("./routers/PurchaseRequest.router"));
 const procurementorder_router_1 = __importDefault(require("./routers/procurementorder.router"));
@@ -32,6 +33,7 @@ app.use("/auth", user_router_1.default);
 app.use("/procurement-order", procurementorder_router_1.default);
 app.use("/purchase-request", PurchaseRequest_router_1.default);
 app.use("/item", item_router_1.default);
+app.use(error_middleware_1.ErrorMiddleware);
 app.use((err, req, res, next) => {
     const error = err;
     res.status(500).send(error.message);
