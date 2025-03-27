@@ -3,6 +3,7 @@ import { PORT as port } from "./config"
 import helmet from "helmet"
 import cors from "cors"
 import { KevDB } from "./data-source"
+import corsOptions from "./configCORS/corsOptions"
 
 // router
 import PurchaseRequestRouter from "./routers/PurchaseRequest.router"
@@ -15,7 +16,8 @@ const app: Application = express()
 
 //middleware global
 app.use(helmet())
-app.use(cors()) //open to public
+app.use(cors(corsOptions))
+// app.use(cors()) //open to public
 // app.use(
 //   cors({
 //     origin: "procurement-app-rkp1ve.flutterflow.app",
