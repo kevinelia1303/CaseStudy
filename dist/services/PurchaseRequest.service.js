@@ -52,7 +52,7 @@ function GetAllPR(_a) {
             const result = yield PRRepo.createQueryBuilder("PurchaseRequest")
                 .leftJoin("ItemidId", "item")
                 .getManyAndCount();
-            return yield result;
+            return result;
         }
         catch (error) {
             throw error;

@@ -58,7 +58,7 @@ async function GetAllPR({
       .leftJoin("ItemidId", "item")
       .getManyAndCount()
 
-    return await result
+    return result
   } catch (error) {
     throw error
   }
