@@ -48,12 +48,17 @@ async function GetAllPR({
 }) {
   try {
     const skipData = page === 1 ? 0 : (page - 1) * pageSize
-    const PR = KevDB.getRepository(PurchaseRequest)
-      .createQueryBuilder("PurchaseRequest")
-      .leftJoinAndSelect("PurchaseRequest.itemIdId", "item")
-      .offset((page - 1) * pageSize)
+    // const PR = KevDB.getRepository(PurchaseRequest)
+    //   .createQueryBuilder("PurchaseRequest")
+    //   .leftJoinAndSelect("PurchaseRequest.itemIdId", "item")
+    //   .offset((page - 1) * pageSize)
 
-    return await PR.getManyAndCount()
+    const PRRepo = KevDB.getRepository(PurchaseRequest)
+    const result = await PRRepo.createQueryBuilder("PurchaseRequest")
+      .leftJoin("ItemidId", "item")
+      .getManyAndCount()
+
+    return await result
   } catch (error) {
     throw error
   }
