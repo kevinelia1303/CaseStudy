@@ -28,7 +28,7 @@ async function CreatePurchaseRequest(
   }
 }
 
-function GetAllPR(req: Request, res: Response, next: NextFunction) {
+async function GetAllPR(req: Request, res: Response, next: NextFunction) {
   try {
     const data = PurchaseRequestService.GetAllPR({
       page: 1, // default page

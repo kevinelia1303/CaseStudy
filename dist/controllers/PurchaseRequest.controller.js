@@ -35,19 +35,21 @@ function CreatePurchaseRequest(req, res, next) {
     });
 }
 function GetAllPR(req, res, next) {
-    try {
-        const data = PurchaseRequest_service_1.default.GetAllPR({
-            page: 1, // default page
-            pageSize: 10, // default page size
-        });
-        res.status(200).json({
-            message: "Success",
-            PurchaseRequest: data,
-        });
-    }
-    catch (error) {
-        next(error);
-    }
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const data = PurchaseRequest_service_1.default.GetAllPR({
+                page: 1, // default page
+                pageSize: 10, // default page size
+            });
+            res.status(200).json({
+                message: "Success",
+                PurchaseRequest: data,
+            });
+        }
+        catch (error) {
+            next(error);
+        }
+    });
 }
 function GetPOById(req, res, next) {
     try {
