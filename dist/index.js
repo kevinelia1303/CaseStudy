@@ -15,6 +15,7 @@ const PurchaseRequest_router_1 = __importDefault(require("./routers/PurchaseRequ
 const procurementorder_router_1 = __importDefault(require("./routers/procurementorder.router"));
 const item_router_1 = __importDefault(require("./routers/item.router"));
 const user_router_1 = __importDefault(require("./routers/user.router"));
+const callapi_router_1 = __importDefault(require("./routers/callapi.router"));
 const PORT = config_1.PORT || 8080;
 const app = (0, express_1.default)();
 //middleware global
@@ -33,6 +34,7 @@ app.use("/auth", user_router_1.default);
 app.use("/procurement-order", procurementorder_router_1.default);
 app.use("/purchase-request", PurchaseRequest_router_1.default);
 app.use("/item", item_router_1.default);
+app.use("/callapi", callapi_router_1.default);
 app.use(error_middleware_1.ErrorMiddleware);
 app.use((err, req, res, next) => {
     const error = err;

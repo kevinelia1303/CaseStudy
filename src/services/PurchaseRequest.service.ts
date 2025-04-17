@@ -39,6 +39,36 @@ async function createPR({
   }
 }
 
+async function GetAllPR({
+  page = 1,
+  pageSize = 10,
+}: {
+  page: number
+  pageSize: number
+}) {
+  try {
+    const skipData = page === 1 ? 0 : (page - 1) * pageSize
+    const PR = KevDB.getRepository(PurchaseRequest)
+      .createQueryBuilder("PurchaseRequest")
+      .leftJoinAndSelect("PurchaseRequest.itemId", "item")
+      .offset((page - 1) * pageSize)
+
+    // const items = await itemRepo.findAndCount({
+    //   skip: skipData,
+    //   take: pageSize,
+    // })
+
+    // const items = await itemRepo
+    //   .createQueryBuilder("item")
+    //   .offset(skipData)
+    //   .limit(pageSize)
+    //   .getMany()
+    return await PR.getManyAndCount()
+  } catch (error) {
+    throw error
+  }
+}
+
 async function updatePurchaseRequest({
   id,
   status,
@@ -64,4 +94,4 @@ async function updatePurchaseRequest({
   }
 }
 
-export default { createPR, updatePurchaseRequest }
+export default { createPR, updatePurchaseRequest, GetAllPR }

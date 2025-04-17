@@ -9,7 +9,7 @@ const router = Router()
 router.post("/", PurchaseRequestController.CreatePurchaseRequest)
 
 // get all PO
-router.get("/", PurchaseRequestController.GetAllPurchaseOrders)
+router.get("/", PurchaseRequestController.GetAllPR)
 
 //get PO by id
 router.get("/:id", PurchaseRequestController.GetPOById)

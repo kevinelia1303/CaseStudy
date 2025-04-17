@@ -10,7 +10,7 @@ const router = (0, express_1.Router)();
 // create PO
 router.post("/", PurchaseRequest_controller_1.default.CreatePurchaseRequest);
 // get all PO
-router.get("/", PurchaseRequest_controller_1.default.GetAllPurchaseOrders);
+router.get("/", PurchaseRequest_controller_1.default.GetAllPR);
 //get PO by id
 router.get("/:id", PurchaseRequest_controller_1.default.GetPOById);
 // update PO

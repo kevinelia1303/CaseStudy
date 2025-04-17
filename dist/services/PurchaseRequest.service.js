@@ -40,6 +40,30 @@ function createPR(_a) {
         }
     });
 }
+function GetAllPR(_a) {
+    return __awaiter(this, arguments, void 0, function* ({ page = 1, pageSize = 10, }) {
+        try {
+            const skipData = page === 1 ? 0 : (page - 1) * pageSize;
+            const PR = data_source_1.KevDB.getRepository(PurchaseRequest_entity_1.PurchaseRequest)
+                .createQueryBuilder("PurchaseRequest")
+                .leftJoinAndSelect("PurchaseRequest.itemId", "item")
+                .offset((page - 1) * pageSize);
+            // const items = await itemRepo.findAndCount({
+            //   skip: skipData,
+            //   take: pageSize,
+            // })
+            // const items = await itemRepo
+            //   .createQueryBuilder("item")
+            //   .offset(skipData)
+            //   .limit(pageSize)
+            //   .getMany()
+            return yield PR.getManyAndCount();
+        }
+        catch (error) {
+            throw error;
+        }
+    });
+}
 function updatePurchaseRequest(_a) {
     return __awaiter(this, arguments, void 0, function* ({ id, status, }) {
         try {
@@ -60,4 +84,4 @@ function updatePurchaseRequest(_a) {
         }
     });
 }
-exports.default = { createPR, updatePurchaseRequest };
+exports.default = { createPR, updatePurchaseRequest, GetAllPR };

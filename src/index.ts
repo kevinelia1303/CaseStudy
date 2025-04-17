@@ -11,6 +11,7 @@ import PurchaseRequestRouter from "./routers/PurchaseRequest.router"
 import ProcurementOrderRouter from "./routers/procurementorder.router"
 import ItemRouter from "./routers/item.router"
 import UserRouter from "./routers/user.router"
+import CallApiRouter from "./routers/callapi.router"
 
 const PORT = port || 8080
 const app: Application = express()
@@ -35,6 +36,8 @@ app.use("/procurement-order", ProcurementOrderRouter)
 app.use("/purchase-request", PurchaseRequestRouter)
 
 app.use("/item", ItemRouter)
+
+app.use("/callapi", CallApiRouter)
 
 app.use(ErrorMiddleware)
 

@@ -34,29 +34,15 @@ function CreatePurchaseRequest(req, res, next) {
         }
     });
 }
-function GetAllPurchaseOrders(req, res, next) {
+function GetAllPR(req, res, next) {
     try {
-        const { SupplierSearch } = req.query;
-        res.status(200).send({
+        const data = PurchaseRequest_service_1.default.GetAllPR({
+            page: 1, // default page
+            pageSize: 10, // default page size
+        });
+        res.status(200).json({
             message: "Success",
-            data: [
-                {
-                    id: 1,
-                    itemName: "Laptop",
-                    category: "Electronic",
-                    quantity: 10,
-                    supplier: "PT. ABC",
-                    status: "Pending",
-                },
-                {
-                    id: 2,
-                    itemName: "Monitor",
-                    category: "Electronic",
-                    quantity: 5,
-                    supplier: "PT. XYZ",
-                    status: "Approved",
-                },
-            ],
+            PurchaseRequest: data,
         });
     }
     catch (error) {
@@ -149,7 +135,7 @@ function TrackOrderStatus(req, res, next) {
 }
 exports.default = {
     CreatePurchaseRequest,
-    GetAllPurchaseOrders,
+    GetAllPR,
     GetPOById,
     UpdatePO,
     DeletePO,
