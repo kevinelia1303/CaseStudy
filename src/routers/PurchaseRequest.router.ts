@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express"
+import { verifyToken, adminGuard } from "../middlewares/auth.middleware"
 
 // controller
 import PurchaseRequestController from "../controllers/PurchaseRequest.controller"
@@ -9,7 +10,7 @@ const router = Router()
 router.post("/", PurchaseRequestController.CreatePurchaseRequest)
 
 // get all PO
-router.get("/", PurchaseRequestController.GetAllPR)
+router.get("/", verifyToken, PurchaseRequestController.GetAllPR)
 
 //get PO by id
 router.get("/:id", PurchaseRequestController.GetPOById)
