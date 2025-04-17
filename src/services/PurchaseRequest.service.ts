@@ -55,7 +55,7 @@ async function GetAllPR({
 
     const PRRepo = KevDB.getRepository(PurchaseRequest)
     const result = await PRRepo.createQueryBuilder("PurchaseRequest")
-      .leftJoinAndSelect("PurchaseRequest.ItemidId", "item")
+      .leftJoinAndSelect("PurchaseRequest.ItemId", "item")
       .getMany()
 
     return result
