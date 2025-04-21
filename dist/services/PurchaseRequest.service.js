@@ -51,6 +51,7 @@ function GetAllPR(_a) {
             const PRRepo = data_source_1.KevDB.getRepository(PurchaseRequest_entity_1.PurchaseRequest);
             const result = yield PRRepo.createQueryBuilder("PurchaseRequest")
                 .leftJoinAndSelect("PurchaseRequest.itemId", "item")
+                .offset((page - 1) * pageSize)
                 .getMany();
             return result;
         }

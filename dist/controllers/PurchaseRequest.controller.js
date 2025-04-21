@@ -37,9 +37,10 @@ function CreatePurchaseRequest(req, res, next) {
 function GetAllPR(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const { page, pageSize } = req.body;
             const data = yield PurchaseRequest_service_1.default.GetAllPR({
-                page: 1, // default page
-                pageSize: 10, // default page size
+                page: page, // default page
+                pageSize: pageSize, // default page size
             });
             res.status(200).json({
                 message: "Success",
