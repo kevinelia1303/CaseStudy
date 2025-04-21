@@ -30,10 +30,10 @@ async function CreatePurchaseRequest(
 
 async function GetAllPR(req: Request, res: Response, next: NextFunction) {
   try {
-    const { page, pageSize } = req.body
+    const { page, pageSize } = req.query
     const data = await PurchaseRequestService.GetAllPR({
-      page: page, // default page
-      pageSize: pageSize, // default page size
+      page: Number(page), // default page
+      pageSize: Number(pageSize), // default page size
     })
     res.status(200).json({
       message: "Success",
