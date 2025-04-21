@@ -6,7 +6,7 @@ const allowedOrigins = [
   "https://waps-reborn.flutterflow.app",
   "http://localhost:8080",
   "https://procurement-app-rkp1ve.flutterflow.app",
-  "https://property-management-apps-mobile-5iwvin.flutterflow.app/",
+  "https://property-management-apps-mobile-5iwvin.flutterflow.app",
 ]
 // module.exports = allowedOrigins;
 
