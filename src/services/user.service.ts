@@ -83,6 +83,7 @@ const UserService = {
       }
 
       const payload = {
+        uuid: user.id,
         email: user.email,
         name: user.name,
         role: user.role,

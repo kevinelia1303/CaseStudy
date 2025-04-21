@@ -114,6 +114,7 @@ const UserService = {
                 // throw new HttpException (500, "Password is incorrect")
             }
             const payload = {
+                uuid: user.id,
                 email: user.email,
                 name: user.name,
                 role: user.role,
