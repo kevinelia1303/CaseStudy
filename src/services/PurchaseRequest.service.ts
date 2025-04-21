@@ -56,8 +56,10 @@ async function GetAllPR({
     const PRRepo = KevDB.getRepository(PurchaseRequest)
     const result = await PRRepo.createQueryBuilder("PurchaseRequest")
       .leftJoinAndSelect("PurchaseRequest.itemId", "item")
-      .offset((page - 1) * pageSize)
-      .getMany()
+      // .offset((page - 1) * pageSize)
+      .offset(skipData)
+      .limit(pageSize)
+      .getManyAndCount()
 
     return result
   } catch (error) {
