@@ -41,7 +41,7 @@ function createPR(_a) {
     });
 }
 function GetAllPR(_a) {
-    return __awaiter(this, arguments, void 0, function* ({ page = 1, pageSize = 10, }) {
+    return __awaiter(this, arguments, void 0, function* ({ page = 1, pageSize = 2, }) {
         try {
             const skipData = page === 1 ? 0 : (page - 1) * pageSize;
             // const PR = KevDB.getRepository(PurchaseRequest)

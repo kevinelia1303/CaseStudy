@@ -41,7 +41,7 @@ async function createPR({
 
 async function GetAllPR({
   page = 1,
-  pageSize = 10,
+  pageSize = 2,
 }: {
   page: number
   pageSize: number
